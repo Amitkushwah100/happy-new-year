@@ -86,22 +86,12 @@ canvas{
 </style>
 </head>
 
-<audio id="bgMusic" autoplay loop>
-  <source src="/music/soft.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.4;
-
-  // browser block kare to first click pe chale
-  document.body.addEventListener("click", () => {
-    music.play();
-  }, { once: true });
-</script>
-
-
 <body>
+
+<!-- 🎶 BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music/soft.mp3" type="audio/mpeg">
+</audio>
 
 <canvas id="fw"></canvas>
 
@@ -116,6 +106,15 @@ canvas{
 </div>
 
 <script>
+/* 🎶 MUSIC FIX */
+const music = document.getElementById("bgMusic");
+music.volume = 0.4;
+
+// autoplay browser fix
+document.body.addEventListener("click", () => {
+  music.play();
+}, { once: true });
+
 /* 🎆 SOFT MULTI-COLOR FIREWORKS */
 const canvas = document.getElementById("fw");
 const ctx = canvas.getContext("2d");
@@ -174,7 +173,7 @@ function showLine(){
 }
 setTimeout(showLine,1500);
 
-/* show next button */
+/* NEXT BUTTON */
 setTimeout(()=>{
   document.getElementById("nextBtn").classList.add("showBtn");
 },16000);
