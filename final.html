@@ -75,23 +75,13 @@ canvas{
 }
 </style>
 </head>
-<!-- 🎶 FIREWORKS MUSIC -->
-<audio id="fireMusic" autoplay loop>
-  <source src="/music/fireworks.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  const fireMusic = document.getElementById("fireMusic");
-  fireMusic.volume = 0.5;
-
-  // browser autoplay block kare to first click pe start
-  document.body.addEventListener("click", () => {
-    fireMusic.play();
-  }, { once: true });
-</script>
-
 
 <body>
+
+<!-- 🎶 FIREWORKS MUSIC -->
+<audio id="fireMusic" loop>
+  <source src="music/fireworks.mp3" type="audio/mpeg">
+</audio>
 
 <canvas id="c"></canvas>
 
@@ -103,6 +93,15 @@ canvas{
 </div>
 
 <script>
+/* 🎶 MUSIC FIX */
+const fireMusic = document.getElementById("fireMusic");
+fireMusic.volume = 0.5;
+
+// autoplay block fix
+document.body.addEventListener("click", () => {
+  fireMusic.play();
+}, { once: true });
+
 /* 🎆 FIREWORKS */
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
@@ -125,10 +124,11 @@ function firework(x,y,color){
 }
 
 function backgroundFirework(){
-  let x=Math.random()*canvas.width;
-  let y=Math.random()*canvas.height*0.5;
-  let color=colors[Math.floor(Math.random()*colors.length)];
-  firework(x,y,color);
+  firework(
+    Math.random()*canvas.width,
+    Math.random()*canvas.height*0.5,
+    colors[Math.floor(Math.random()*colors.length)]
+  );
 }
 setInterval(backgroundFirework,700);
 
@@ -151,7 +151,7 @@ function animate(){
 }
 animate();
 
-/* ✨ TEXT POP-POP */
+/* ✨ TEXT */
 const text1 = "HAPPY NEW YEAR";
 const text2 = "PRANSSI❤️";
 let i1=0, i2=0;
@@ -162,11 +162,6 @@ function writeLine1(){
     s.className="letter";
     s.innerHTML=text1[i1]===" "?"&nbsp;":text1[i1];
     line1.appendChild(s);
-
-    firework(canvas.width/2-360+i1*32, canvas.height/2-120,
-      colors[Math.floor(Math.random()*colors.length)]
-    );
-
     i1++;
     setTimeout(writeLine1,220);
   } else {
@@ -180,11 +175,6 @@ function writeLine2(){
     s.className="letter";
     s.innerHTML=text2[i2];
     line2.appendChild(s);
-
-    firework(canvas.width/2-180+i2*36, canvas.height/2-40,
-      colors[Math.floor(Math.random()*colors.length)]
-    );
-
     i2++;
     setTimeout(writeLine2,260);
   } else {
@@ -201,4 +191,3 @@ function goNext(){
 
 </body>
 </html>
-z
