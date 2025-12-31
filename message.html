@@ -88,8 +88,10 @@ canvas{
 
 <body>
 
-
-
+<!-- 🎶 REQUIRED AUDIO (THIS WAS MISSING) -->
+<audio id="bgMusic" loop>
+  <source src="music/soft.mp3" type="audio/mpeg">
+</audio>
 
 <canvas id="fw"></canvas>
 
@@ -108,12 +110,11 @@ canvas{
 const music = document.getElementById("bgMusic");
 music.volume = 0.4;
 
-// autoplay browser fix
 document.body.addEventListener("click", () => {
   music.play();
 }, { once: true });
 
-/* 🎆 SOFT MULTI-COLOR FIREWORKS */
+/* 🎆 FIREWORKS */
 const canvas = document.getElementById("fw");
 const ctx = canvas.getContext("2d");
 canvas.width = innerWidth;
@@ -158,7 +159,7 @@ function animate(){
 setInterval(firework,700);
 animate();
 
-/* 🎬 CINEMATIC TEXT */
+/* 🎬 TEXT */
 const lines=["l1","l2","l3","l4","l5"];
 let i=0;
 
@@ -171,7 +172,6 @@ function showLine(){
 }
 setTimeout(showLine,1500);
 
-/* NEXT BUTTON */
 setTimeout(()=>{
   document.getElementById("nextBtn").classList.add("showBtn");
 },16000);
@@ -183,5 +183,3 @@ function goNext(){
 
 </body>
 </html>
-
-
